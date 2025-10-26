@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Demo: eCommerce Add Product - Apps | Vuexy - Bootstrap Dashboard PRO</title>
+    <title>Create Ticket</title>
 
     <meta name="description" content="" />
 
@@ -475,7 +475,7 @@
                   </div>
                   <div class="d-flex align-content-center flex-wrap gap-4">
                     <div class="d-flex gap-4">
-                      <button class="btn btn-secondary">Cancel</button>
+                      <button class="btn btn-secondary" onclick="window.location.href='../Ticket List/ticket-list.html'">Cancel</button>
                     </div>
                     <button type="submit" class="btn btn-primary">Create Ticket</button>
                   </div>
@@ -568,108 +568,77 @@
                     </div>
                     <!-- /Media -->
                   </div>
-                  <!-- /Second column -->
+                  <!-- /First column -->
 
                   <!-- Second column -->
                   <div class="col-12 col-lg-4">
-                    <!-- Pricing Card -->
-                    <div class="card mb-6">
-                      <div class="card-header">
-                        <h5 class="card-title mb-0">Pricing</h5>
-                      </div>
-                      <div class="card-body">
-                        <!-- Base Price -->
-                        <div class="mb-6">
-                          <label class="form-label" for="ecommerce-product-price">Base Price</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="ecommerce-product-price"
-                            placeholder="Price"
-                            name="productPrice"
-                            aria-label="Product price" />
-                        </div>
-                        <!-- Discounted Price -->
-                        <div class="mb-6">
-                          <label class="form-label" for="ecommerce-product-discount-price">Discounted Price</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="ecommerce-product-discount-price"
-                            placeholder="Discounted Price"
-                            name="productDiscountedPrice"
-                            aria-label="Product discounted price" />
-                        </div>
-                        <!-- Charge tax check box -->
-                        <div class="form-check ms-2 mt-2 mb-4">
-                          <input class="form-check-input" type="checkbox" value="" id="price-charge-tax" checked />
-                          <label class="switch-label" for="price-charge-tax"> Charge tax on this product </label>
-                        </div>
-                        <!-- Instock switch -->
-                        <div class="d-flex justify-content-between align-items-center border-top pt-2">
-                          <span class="mb-0">In stock</span>
-                          <div class="w-25 d-flex justify-content-end">
-                            <div class="form-check form-switch me-n3">
-                              <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /Pricing Card -->
                     <!-- Organize Card -->
                     <div class="card mb-6">
                       <div class="card-header">
-                        <h5 class="card-title mb-0">Organize</h5>
+                        <h5 class="card-title mb-0">Ticket Details</h5>
                       </div>
                       <div class="card-body">
-                        <!-- Vendor -->
+                        <!-- Priority -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
-                          <label class="form-label mb-1" for="vendor"> Vendor </label>
-                          <select id="vendor" class="select2 form-select" data-placeholder="Select Vendor">
-                            <option value="">Select Vendor</option>
-                            <option value="men-clothing">Men's Clothing</option>
-                            <option value="women-clothing">Women's-clothing</option>
-                            <option value="kid-clothing">Kid's-clothing</option>
+                          <label class="form-label mb-1" for="priority"> Priority </label>
+                          <select id="priority" class="select2 form-select" data-placeholder="Select Priority">
+                            <option value="">Select Priority</option>
+                            <option value="P1">P1</option>
+                            <option value="Critical">Critical</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                            <option value="Request">Request</option>
                           </select>
                         </div>
-                        <!-- Category -->
+                        <!-- Assignee -->
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="mb-6 col ecommerce-select2-dropdown">
-                            <label class="form-label mb-1" for="category-org">
-                              <span>Category</span>
+                            <label class="form-label mb-1" for="assignee">
+                              <span>Assignee</span>
                             </label>
-                            <select id="category-org" class="select2 form-select" data-placeholder="Select Category">
-                              <option value="">Select Category</option>
-                              <option value="Household">Household</option>
-                              <option value="Management">Management</option>
-                              <option value="Electronics">Electronics</option>
-                              <option value="Office">Office</option>
-                              <option value="Automotive">Automotive</option>
+                            <select id="assignee" class="select2 form-select" data-placeholder="Select Assignee">
+                              <option value="">Select Assignee</option>
+                              <option value="Jon Snow">Jon Snow</option>
+                              <option value="Booker DeWitt">Booker DeWitt</option>
+                              <option value="Aiden Pearce">Aiden Pearce</option>
+                              <option value="John Price">John Price</option>
                             </select>
                           </div>
                           <a href="javascript:void(0);" class="fw-medium btn btn-icon btn-label-primary ms-4"
                             ><i class="icon-base ti tabler-plus icon-md"></i
                           ></a>
                         </div>
-                        <!-- Collection -->
+                        <!-- Type -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
-                          <label class="form-label mb-1" for="collection">Collection </label>
-                          <select id="collection" class="select2 form-select" data-placeholder="Collection">
-                            <option value="">Collection</option>
-                            <option value="men-clothing">Men's Clothing</option>
-                            <option value="women-clothing">Women's-clothing</option>
-                            <option value="kid-clothing">Kid's-clothing</option>
+                          <label class="form-label mb-1" for="collection">Type </label>
+                          <select id="type" class="select2 form-select" data-placeholder="Type">
+                            <option value="">Type</option>
+                            <option value="Bug Fix">Bug Fix</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Sprint">Sprint</option>
+                            <option value="IT Issue">IT Issue</option>
                           </select>
                         </div>
                         <!-- Status -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
-                          <label class="form-label mb-1" for="status-org">Status </label>
-                          <select id="status-org" class="select2 form-select" data-placeholder="Published">
-                            <option value="">Published</option>
-                            <option value="Published">Published</option>
-                            <option value="Scheduled">Scheduled</option>
-                            <option value="Inactive">Inactive</option>
+                          <label class="form-label mb-1" for="status">Status </label>
+                          <select id="status" class="select2 form-select" data-placeholder="Status">
+                            <option value="">Status</option>
+                            <option value="Pending" class="text-capitalize">Pending</option>
+                            <option value="Open" class="text-capitalize">Open</option>
+                            <option value="Closed" class="text-capitalize">Closed</option>
+                            <option value="Unread" class="text-capitalize">Unread</option>
+                            <option value="Waiting Response" class="text-capitalize">Waiting Response</option>
+                          </select>
+                        </div>
+                        <!-- Owner -->
+                        <div class="mb-6 col ecommerce-select2-dropdown">
+                          <label class="form-label mb-1" for="owner">Owner </label>
+                          <select id="owner" class="select2 form-select" data-placeholder="Owner">
+                            <option value="">Owner</option>
+                            <option value="Pending" class="text-capitalize">John Doe</option>
                           </select>
                         </div>
                         <!-- Tags -->
@@ -746,6 +715,6 @@
     <script src="../../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="../../assets/js/app-ecommerce-product-add.js"></script>
+    <script src="../../assets/js/ticket-create.js"></script>
   </body>
 </html>
