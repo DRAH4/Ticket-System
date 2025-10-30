@@ -2,11 +2,24 @@
   "name": "ticket-system",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRAH4/Ticket-System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DRAH4/Ticket-System/issues"
+  },
+  "homepage": "https://github.com/DRAH4/Ticket-System#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
