@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Serve everything in /Public
 app.use(express.static(path.join(__dirname, "Public")));
 
-// ✅ Serve index.html (your ticket list) as the homepage
+// Serve index.html (your ticket list) as the homepage
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Public", "index.html"));
 });

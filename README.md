@@ -7,6 +7,10 @@ The goal of this project is to build a full stack web application that demonstra
 
 Currently, the front-end is complete using HTML and CSS from a purchased template. The next steps include adding JavaScript functionality, connecting to a MySQL database, and implementing the core CRUD features.
 
+# Current Status (for Code Review)
+
+This version of the project is in the early development stage and serves as the starting point for my CS-499 Capstone. It includes the front-end layout and design for the Ticket List and Create Ticket pages using HTML and CSS from the Vuexy Admin Dashboard Template. No backend, JavaScript functionality, or database connections have been implemented yet. These features will be added and enhanced throughout the later milestones.
+
 ## Features (Planned)
 
 Create, edit, and delete tickets
@@ -60,7 +64,8 @@ All design rights belong to PIXINVENT. All project-specific logic, scripts, data
 This version of the project is front-end only and can be viewed locally.
 
 1. Clone or download the repository.
-2. Open index.html in your web browser.
+3. npm run dev.
+2. Open http://localhost:3000/index.html in your web browser.
 
 
 When the backend and database are added, setup instructions will include installation and startup commands such as:
