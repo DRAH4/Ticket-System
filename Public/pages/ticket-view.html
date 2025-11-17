@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Demo: Preview - Invoice | Vuexy - Bootstrap Dashboard PRO</title>
+    <title>Ticket View</title>
 
     <meta name="description" content="" />
 
@@ -146,100 +146,6 @@
                   </ul>
                 </li>
                 <!-- / Style Switcher-->
-
-                <!-- Quick links  -->
-                <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown">
-                  <a
-                    class="nav-link dropdown-toggle hide-arrow btn btn-icon btn-text-secondary rounded-pill"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside"
-                    aria-expanded="false">
-                    <i class="icon-base ti tabler-layout-grid-add icon-22px text-heading"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-end p-0">
-                    <div class="dropdown-menu-header border-bottom">
-                      <div class="dropdown-header d-flex align-items-center py-3">
-                        <h6 class="mb-0 me-auto">Shortcuts</h6>
-                        <a
-                          href="javascript:void(0)"
-                          class="dropdown-shortcuts-add py-2 btn btn-text-secondary rounded-pill btn-icon"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="Add shortcuts"
-                          ><i class="icon-base ti tabler-plus icon-20px text-heading"></i
-                        ></a>
-                      </div>
-                    </div>
-                    <div class="dropdown-shortcuts-list scrollable-container">
-                      <div class="row row-bordered overflow-visible g-0">
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-calendar icon-26px text-heading"></i>
-                          </span>
-                          <a href="app-calendar.html" class="stretched-link">Calendar</a>
-                          <small>Appointments</small>
-                        </div>
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-file-dollar icon-26px text-heading"></i>
-                          </span>
-                          <a href="app-invoice-list.html" class="stretched-link">Invoice App</a>
-                          <small>Manage Accounts</small>
-                        </div>
-                      </div>
-                      <div class="row row-bordered overflow-visible g-0">
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-user icon-26px text-heading"></i>
-                          </span>
-                          <a href="app-user-list.html" class="stretched-link">User App</a>
-                          <small>Manage Users</small>
-                        </div>
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-users icon-26px text-heading"></i>
-                          </span>
-                          <a href="app-access-roles.html" class="stretched-link">Role Management</a>
-                          <small>Permission</small>
-                        </div>
-                      </div>
-                      <div class="row row-bordered overflow-visible g-0">
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-device-desktop-analytics icon-26px text-heading"></i>
-                          </span>
-                          <a href="index.html" class="stretched-link">Dashboard</a>
-                          <small>User Dashboard</small>
-                        </div>
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-settings icon-26px text-heading"></i>
-                          </span>
-                          <a href="pages-account-settings-account.html" class="stretched-link">Setting</a>
-                          <small>Account Settings</small>
-                        </div>
-                      </div>
-                      <div class="row row-bordered overflow-visible g-0">
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-help-circle icon-26px text-heading"></i>
-                          </span>
-                          <a href="pages-faq.html" class="stretched-link">FAQs</a>
-                          <small>FAQs & Articles</small>
-                        </div>
-                        <div class="dropdown-shortcuts-item col">
-                          <span class="dropdown-shortcuts-icon rounded-circle mb-3">
-                            <i class="icon-base ti tabler-square icon-26px text-heading"></i>
-                          </span>
-                          <a href="modal-examples.html" class="stretched-link">Modals</a>
-                          <small>Useful Popups</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <!-- Quick links -->
 
                 <!-- Notification -->
                 <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
@@ -501,7 +407,7 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="rounded-circle" />
+                      <span class="avatar-initial rounded-circle bg-label-success">DR</span>
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -510,11 +416,11 @@
                         <div class="d-flex align-items-center">
                           <div class="flex-shrink-0 me-2">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="rounded-circle" />
+                              <span class="avatar-initial rounded-circle bg-label-success">DR</span>
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <h6 class="mb-0">John Doe</h6>
+                            <h6 class="mb-0">David Rahmey</h6>
                             <small class="text-body-secondary">Admin</small>
                           </div>
                         </div>
@@ -583,262 +489,111 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row invoice-preview">
-                <!-- Invoice -->
+                <!-- View Ticket -->
                 <div class="col-xl-9 col-md-8 col-12 mb-md-0 mb-6">
-                  <div class="card invoice-preview-card p-sm-12 p-6">
-                    <div class="card-body invoice-preview-header rounded">
-                      <div
-                        class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column align-items-xl-center align-items-md-start align-items-sm-center align-items-start">
-                        <div class="mb-xl-0 mb-6 text-heading">
-                          <div class="d-flex svg-illustration mb-6 gap-2 align-items-center">
-                            <span class="app-brand-logo demo">
-                              <span class="text-primary">
-                                <svg
-                                  width="32"
-                                  height="22"
-                                  viewBox="0 0 32 22"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                                    fill="currentColor" />
-                                  <path
-                                    opacity="0.06"
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                                    fill="#161616" />
-                                  <path
-                                    opacity="0.06"
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                                    fill="#161616" />
-                                  <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                                    fill="currentColor" />
-                                </svg>
-                              </span>
-                            </span>
-                            <span class="app-brand-text fw-bold fs-4 ms-50">Vuexy</span>
-                          </div>
-                          <p class="mb-2">Office 149, 450 South Brand Brooklyn</p>
-                          <p class="mb-2">San Diego County, CA 91905, USA</p>
-                          <p class="mb-0">+1 (123) 456 7891, +44 (876) 543 2198</p>
-                        </div>
-                        <div>
-                          <h5 class="mb-6">Invoice #86423</h5>
-                          <div class="mb-1 text-heading">
-                            <span>Date Issues:</span>
-                            <span class="fw-medium">April 25, 2021</span>
-                          </div>
-                          <div class="text-heading">
-                            <span>Date Due:</span>
-                            <span class="fw-medium">May 25, 2021</span>
-                          </div>
+                  <div class="card invoice-preview-card p-sm-6 p-4 shadow-sm border-0">
+                    <div class="card-body invoice-preview-header rounded bg-body-tertiary">
+                      <div class="d-flex justify-content-between flex-column flex-md-row align-items-start align-items-md-center">
+                        <div class="text-heading mb-md-0 mb-3">
+                          <h5 class="fw-bold mb-2 text-primary">Ticket Details</h5>
+                          <p class="mb-1 text-muted">Ticket ID: <span class="fw-semibold">#1234</span></p>
+                          <p class="mb-0 text-muted">Created: <span class="fw-semibold">09/12/2025</span></p>
+                          <h6 class="mb-1">Status: 
+                            <span class="badge bg-warning text-dark">In Progress</span>
+                          </h6>
+                          <p class="mb-1 text-muted">Priority: <span class="fw-semibold text-danger">High</span></p>
                         </div>
                       </div>
-                    </div>
-                    <div class="card-body px-0">
-                      <div class="row">
-                        <div class="col-xl-6 col-md-12 col-sm-5 col-12 mb-xl-0 mb-md-6 mb-sm-0 mb-6">
-                          <h6>Invoice To:</h6>
-                          <p class="mb-1">Thomas shelby</p>
-                          <p class="mb-1">Shelby Company Limited</p>
-                          <p class="mb-1">Small Heath, B10 0HF, UK</p>
-                          <p class="mb-1">718-986-6062</p>
-                          <p class="mb-0">peakyFBlinders@gmail.com</p>
-                        </div>
-                        <div class="col-xl-6 col-md-12 col-sm-7 col-12">
-                          <h6>Bill To:</h6>
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td class="pe-4">Total Due:</td>
-                                <td class="fw-medium">$12,110.55</td>
-                              </tr>
-                              <tr>
-                                <td class="pe-4">Bank name:</td>
-                                <td>American Bank</td>
-                              </tr>
-                              <tr>
-                                <td class="pe-4">Country:</td>
-                                <td>United States</td>
-                              </tr>
-                              <tr>
-                                <td class="pe-4">IBAN:</td>
-                                <td>ETD95476213874685</td>
-                              </tr>
-                              <tr>
-                                <td class="pe-4">SWIFT code:</td>
-                                <td>BR91905</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="table-responsive border border-bottom-0 border-top-0 rounded">
-                      <table class="table m-0">
-                        <thead>
-                          <tr>
-                            <th>Item</th>
-                            <th>Description</th>
-                            <th>Cost</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="text-nowrap text-heading">Vuexy Admin Template</td>
-                            <td class="text-nowrap">HTML Admin Template</td>
-                            <td>$32</td>
-                            <td>1</td>
-                            <td>$32.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-nowrap text-heading">Frest Admin Template</td>
-                            <td class="text-nowrap">Angular Admin Template</td>
-                            <td>$22</td>
-                            <td>1</td>
-                            <td>$22.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-nowrap text-heading">Apex Admin Template</td>
-                            <td class="text-nowrap">HTML Admin Template</td>
-                            <td>$17</td>
-                            <td>2</td>
-                            <td>$34.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-nowrap text-heading">Robust Admin Template</td>
-                            <td class="text-nowrap">React Admin Template</td>
-                            <td>$66</td>
-                            <td>1</td>
-                            <td>$66.00</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table m-0 table-borderless">
-                        <tbody>
-                          <tr>
-                            <td class="align-top pe-6 ps-0 py-6 text-body">
-                              <p class="mb-1">
-                                <span class="me-2 h6">Salesperson:</span>
-                                <span>Alfie Solomons</span>
-                              </p>
-                              <span>Thanks for your business</span>
-                            </td>
-                            <td class="px-0 py-6 w-px-100">
-                              <p class="mb-2">Subtotal:</p>
-                              <p class="mb-2">Discount:</p>
-                              <p class="mb-2 border-bottom pb-2">Tax:</p>
-                              <p class="mb-0">Total:</p>
-                            </td>
-                            <td class="text-end px-0 py-6 w-px-100 fw-medium text-heading">
-                              <p class="fw-medium mb-2">$1800</p>
-                              <p class="fw-medium mb-2">$28</p>
-                              <p class="fw-medium mb-2 border-bottom pb-2">21%</p>
-                              <p class="fw-medium mb-0">$1690</p>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
                     </div>
 
-                    <hr class="mt-0 mb-6" />
-                    <div class="card-body p-0">
+                    <div class="card-body px-0 pt-3">
                       <div class="row">
-                        <div class="col-12">
-                          <span class="fw-medium text-heading">Note:</span>
-                          <span
-                            >It was a pleasure working with you and your team. We hope you will keep us in mind for
-                            future freelance projects. Thank You!</span
-                          >
+                        <div class="col-xl-6 col-md-12 mb-4">
+                          <h6 class="fw-semibold text-uppercase mb-2">General Info</h6>
+                          <p class="mb-1"><strong>Title:</strong> Website Bug</p>
+                          <p class="mb-1"><strong>Type:</strong> Bug Fix</p>
+                          <p class="mb-1"><strong>Ticket Owner:</strong> Smith</p>
+                          <p class="mb-1"><strong>Assigned To:</strong> Doe</p>
+                        </div>
+
+                        <div class="col-xl-6 col-md-12">
+                          <h6 class="fw-semibold text-uppercase mb-2">Description</h6>
+                          <p class="text-muted mb-0">
+                            Users are unable to submit forms due to a JavaScript error on the contact page.
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- /Invoice -->
 
-                <!-- Invoice Actions -->
+                <!-- /View -->
+
+                <!-- Ticket Actions -->
                 <div class="col-xl-3 col-md-4 col-12 invoice-actions">
                   <div class="card">
                     <div class="card-body">
                       <button
                         class="btn btn-primary d-grid w-100 mb-4"
-                        data-bs-target="#startTimer">
+                        data-bs-target="#editTicket" onclick="window.location.href='/pages/ticket-edit.html'">
                         <span class="d-flex align-items-center justify-content-center text-nowrap"
-                          ><i class="icon-base ti tabler-play icon-xs me-2"></i>Start</span
+                          >Edit Ticket</span
                         >
                       </button>
                       <button
-                        class="btn btn-secondary d-grid w-100 mb-4"
-                        data-bs-target="#pauseTimer">
+                        class="btn btn-danger d-grid w-100 mb-4"
+                        data-bs-target="#deleteTicket">
                         <span class="d-flex align-items-center justify-content-center text-nowrap"
-                          ><i class="icon-base ti tabler-pause icon-xs me-2"></i>Pause</span
-                        >
-                      </button>
-                      <button
-                        class="btn btn-danger d-grid w-100"
-                        data-bs-target="#resetTimer">
-                        <span class="d-flex align-items-center justify-content-center text-nowrap"
-                          ><i class="icon-base ti tabler-rotate icon-xs me-2"></i>Reset</span
+                          ></i>Delete Ticket</span
                         >
                       </button>
                     </div>
                   </div>
                 </div>
-                <!-- /Invoice Actions -->
+                <!-- /Ticket Actions -->
+
               </div>
+              <!-- Comments Section -->
+              <div class="card mt-3 shadow-sm border-0">
+                <div class="card-header bg-body-tertiary">
+                  <h5 class="card-title mb-0">Comments</h5>
+                </div>
+                <div class="card-body">
 
-              <!-- /Offcanvas -->
-            </div>
-            <!-- / Content -->
+                  <!-- Existing Comments -->
+                  <div class="mb-4">
+                    <div class="d-flex align-items-start mb-3">
+                      <div>
+                        <h6 class="mb-1 mt-2">John Doe <small class="text-muted">• Sep 9, 2025 at 3:15 PM</small></h6>
+                        <p class="mb-2">I checked the form submission error, looks like the issue is in the event listener. I’ll push a fix soon.</p>
+                      </div>
+                    </div>
 
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl">
-                <div
-                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                  <div class="text-body">
-                    ©
-                    <script>
-                      document.write(new Date().getFullYear());
-                    </script>
-                    , made with ❤️ by <a href="https://pixinvent.com" target="_blank" class="footer-link">Pixinvent</a>
+                    <div class="d-flex align-items-start mb-3">
+                      <div>
+                        <h6 class="mb-1">Sarah Smith <small class="text-muted">• Sep 10, 2025 at 10:22 AM</small></h6>
+                        <p class="mb-2">Thanks, John. I also noticed the issue happens only on mobile browsers.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div class="d-none d-lg-inline-block">
-                    <a href="https://themeforest.net/licenses/standard" class="footer-link me-4" target="_blank"
-                      >License</a
-                    >
-                    <a href="https://themeforest.net/user/pixinvent/portfolio" target="_blank" class="footer-link me-4"
-                      >More Themes</a
-                    >
 
-                    <a
-                      href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
-                      target="_blank"
-                      class="footer-link me-4"
-                      >Documentation</a
-                    >
+                  <hr class="my-4">
 
-                    <a href="https://pixinvent.ticksy.com/" target="_blank" class="footer-link d-none d-sm-inline-block"
-                      >Support</a
-                    >
-                  </div>
+                  <!-- Add Comment Form -->
+                  <form id="comment-form">
+                    <div class="mb-3">
+                      <label for="comment-text" class="form-label fw-semibold">Add a Comment</label>
+                      <textarea class="form-control" id="comment-text" name="commentText" rows="3" placeholder="Write your comment..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Comment</button>
+                  </form>
+
                 </div>
               </div>
-            </footer>
-            <!-- / Footer -->
+              <!-- /Comments Section -->
+
+            </div>
+            <!-- / Content -->
 
             <div class="content-backdrop fade"></div>
           </div>
