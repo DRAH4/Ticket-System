@@ -46,7 +46,7 @@ At this stage, ticket data is hard-coded for layout and testing purposes. Functi
 ## Tech Stack
 
 Frontend: HTML, CSS, JavaScript
-Backend (Planned): Node.js with Express or PHP
+Backend (Planned): Node.js with Express
 Database: MySQL
 Template Framework: Vuexy Admin Dashboard (HTML version)
 UI Components: Vuexy layout and form components
@@ -77,7 +77,7 @@ npm start
 
 tickets – stores ticket information such as title, description, priority, status, assignee, owner, and timestamps.
 comments – stores comments linked to specific tickets.
-users – contains a predefined set of demo users used for ticket assignment.
+users – contains a predefined set of demo users used for ticket assignment(Users are not planed for the Capstone).
 
 ## Future Enhancements
 
@@ -86,8 +86,6 @@ Full database integration with MySQL
 Complete CRUD functionality
 
 Comment system with timestamped updates
-
-Analytics dashboard with ticket metrics
 
 Calendar integration for due dates and scheduling
 
