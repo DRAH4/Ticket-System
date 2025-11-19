@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="../assets/vendor/libs/pickr/pickr-themes.css" />
 
     <link rel="stylesheet" href="../assets/vendor/css/core.css" />
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/css/ticket-list.css" />
 
     <!-- Vendors CSS -->
 
@@ -256,7 +256,7 @@
               <div class="row g-6 mb-6">
                 <!-- Oldest Tickets -->
                 <div class="col-sm-6 col-xl-3">
-                  <button id="filter-oldest" style="all: unset; cursor: pointer; width: 100%; display: block;">
+                  <button id="filter-oldest" class="filter-card-btn">
                     <div class="card">
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
@@ -272,7 +272,7 @@
                 </div>
                 <!-- High Priority -->
                 <div class="col-sm-6 col-xl-3">
-                  <button id="filter-high" style="all: unset; cursor: pointer; width: 100%; display: block;">
+                  <button id="filter-high" class="filter-card-btn">
                     <div class="card">
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
@@ -288,7 +288,7 @@
                 </div>
                 <!-- Open Tickets -->
                 <div class="col-sm-6 col-xl-3">
-                  <button id="filter-open" style="all: unset; cursor: pointer; width: 100%; display: block;">
+                  <button id="filter-open" class="filter-card-btn">
                     <div class="card">
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
@@ -304,7 +304,7 @@
                 </div>
                 <!-- Unread Tickets -->
                 <div class="col-sm-6 col-xl-3">
-                  <button id="filter-unread" style="all: unset; cursor: pointer; width: 100%; display: block;">
+                  <button id="filter-unread" class="filter-card-btn">
                     <div class="card">
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
@@ -325,7 +325,7 @@
                   <h5 class="card-title mb-0">Filters</h5>
                   <div class="d-flex justify-content-between align-items-center row pt-4 gap-4 gap-md-0">
                     <div class="col-md-2 user_role">
-                      <select id="TicketType" class="form-select text-capitalize">
+                      <select id="ticket-type" class="form-select text-capitalize">
                         <option value="">Select Type</option>
                         <option value="Bug Fix">Bug Fix</option>
                         <option value="Testing">Testing</option>
@@ -335,7 +335,7 @@
                       </select>
                     </div>
                     <div class="col-md-2 user_status">
-                      <select id="TicketType" class="form-select text-capitalize">
+                      <select id="ticket-status" class="form-select text-capitalize">
                         <option value="">Select Status</option>
                         <option value="Pending" class="text-capitalize">Pending</option>
                         <option value="Open" class="text-capitalize">Open</option>
@@ -345,7 +345,7 @@
                       </select>
                     </div>
                     <div class="col-md-2 user_role">
-                      <select id="UserRole" class="form-select text-capitalize">
+                      <select id="ticket-owner" class="form-select text-capitalize">
                         <option value="">Select Owner</option>
                         <option value="Super Admin">Super Admin</option>
                         <option value="Admin">Admin</option>
@@ -354,7 +354,7 @@
                       </select>
                     </div>
                     <div class="col-md-2 user_role">
-                      <select id="TicketPriority" class="form-select text-capitalize">
+                      <select id="ticket-priority" class="form-select text-capitalize">
                         <option value="">Select Priority</option>
                         <option value="P1">P1</option>
                         <option value="Critical">Critical</option>
@@ -365,7 +365,7 @@
                       </select>
                     </div>
                     <div class="col-md-2 user_plan">
-                      <select id="Assingnee" class="form-select text-capitalize">
+                      <select id="ticket-assignee" class="form-select text-capitalize">
                         <option value="">Select Assignee</option>
                         <option value="Jon Snow">Jon Snow</option>
                         <option value="Booker DeWitt">Booker DeWitt</option>
@@ -415,233 +415,42 @@
                                 <span class="dt-column-title"></span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="1" rowspan="1" colspan="1" class="dt-select dt-orderable-none" aria-label="">
-                                <span class="dt-column-title"></span>
-                                <span class="dt-column-order"></span>
-                                <input class="form-check-input" type="checkbox" aria-label="Select all rows">
-                              </th>
-                              <th data-dt-column="2" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="User: Activate to sort" tabindex="0">
+                              <th data-dt-column="1" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="User: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">ID</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="3" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Role: Activate to sort" tabindex="0">
+                              <th data-dt-column="2" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Role: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Subject</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="4" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Billing: Activate to sort" tabindex="0">
+                              <th data-dt-column="3" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Billing: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Date Created</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="5" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
+                              <th data-dt-column="4" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Priority</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="6" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
+                              <th data-dt-column="5" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Assignee</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="7" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
+                              <th data-dt-column="6" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Plan: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Type</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="8" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Status: Activate to sort" tabindex="0">
+                              <th data-dt-column="7" rowspan="1" colspan="1" class="dt-orderable-asc dt-orderable-desc" aria-label="Status: Activate to sort" tabindex="0">
                                 <span class="dt-column-title" role="button">Status</span>
                                 <span class="dt-column-order"></span>
                               </th>
-                              <th data-dt-column="9" rowspan="1" colspan="1" class="dt-orderable-none" aria-label="Actions">
+                              <th data-dt-column="8" rowspan="1" colspan="1" class="dt-orderable-none" aria-label="Actions">
                                 <span class="dt-column-title">Owner</span>
                                 <span class="dt-column-order"></span>
                               </th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                              <td class="dt-select">
-                                <input aria-label="Select row" class="form-check-input" type="checkbox">
-                              </td>
-                              <td>
-                                <span>#1234</span>
-                              </td>
-                              <td>
-                                <span>Full Stack Project: <br> Ticketing Sytem</span>
-                              </td>
-                              <td>
-                                <span>09/12/2025</span>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="P1">P1</option>
-                                    <option value="Critical">Critical</option>
-                                    <option value="High">High</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Request">Request</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Jon Snow">Jon Snow</option>
-                                    <option value="Booker DeWitt">Booker DeWitt</option>
-                                    <option value="Aiden Pearce">Aiden Pearce</option>
-                                    <option value="John Price">John Price</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Bug Fix">Bug Fix</option>
-                                    <option value="Testing">Testing</option>
-                                    <option value="Programming">Programming</option>
-                                    <option value="Sprint">Sprint</option>
-                                    <option value="IT Issue">IT Issue</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Pending" class="text-capitalize">Pending</option>
-                                    <option value="Open" class="text-capitalize">Open</option>
-                                    <option value="Closed" class="text-capitalize">Closed</option>
-                                    <option value="Unread" class="text-capitalize">Unread</option>
-                                    <option value="Waiting Response" class="text-capitalize">Waiting Response</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <span>John Doe</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="control dtr-hidden" tabindex="0" style="display: none;">
-                              </td>
-                              <td class="dt-select">
-                                <input aria-label="Select row" class="form-check-input" type="checkbox">
-                              </td>
-                              <td>
-                                <span>#1234</span>
-                              </td>
-                              <td>
-                                <span>Full Stack Project: <br> Ticketing Sytem</span>
-                              </td>
-                              <td>
-                                <span>09/12/2025</span>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="P1">P1</option>
-                                    <option value="Critical">Critical</option>
-                                    <option value="High">High</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Request">Request</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Jon Snow">Jon Snow</option>
-                                    <option value="Booker DeWitt">Booker DeWitt</option>
-                                    <option value="Aiden Pearce">Aiden Pearce</option>
-                                    <option value="John Price">John Price</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Bug Fix">Bug Fix</option>
-                                    <option value="Testing">Testing</option>
-                                    <option value="Programming">Programming</option>
-                                    <option value="Sprint">Sprint</option>
-                                    <option value="IT Issue">IT Issue</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Pending" class="text-capitalize">Pending</option>
-                                    <option value="Open" class="text-capitalize">Open</option>
-                                    <option value="Closed" class="text-capitalize">Closed</option>
-                                    <option value="Unread" class="text-capitalize">Unread</option>
-                                    <option value="Waiting Response" class="text-capitalize">Waiting Response</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <span>John Doe</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                              <td class="dt-select">
-                                <input aria-label="Select row" class="form-check-input" type="checkbox">
-                              </td>
-                              <td>
-                                <span>#1234</span>
-                              </td>
-                              <td>
-                                <span>Full Stack Project: <br> Ticketing Sytem</span>
-                              </td>
-                              <td>
-                                <span>09/12/2025</span>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="P1">P1</option>
-                                    <option value="Critical">Critical</option>
-                                    <option value="High">High</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Low">Low</option>
-                                    <option value="Request">Request</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Jon Snow">Jon Snow</option>
-                                    <option value="Booker DeWitt">Booker DeWitt</option>
-                                    <option value="Aiden Pearce">Aiden Pearce</option>
-                                    <option value="John Price">John Price</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Bug Fix">Bug Fix</option>
-                                    <option value="Testing">Testing</option>
-                                    <option value="Programming">Programming</option>
-                                    <option value="Sprint">Sprint</option>
-                                    <option value="IT Issue">IT Issue</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <div class="">
-                                  <select class="form-select text-capitalize btn-primary btn">
-                                    <option value="Pending" class="text-capitalize">Pending</option>
-                                    <option value="Open" class="text-capitalize">Open</option>
-                                    <option value="Closed" class="text-capitalize">Closed</option>
-                                    <option value="Unread" class="text-capitalize">Unread</option>
-                                    <option value="Waiting Response" class="text-capitalize">Waiting Response</option>
-                                  </select>
-                                </div>
-                              </td>
-                              <td>
-                                <span>John Doe</span>
-                              </td>
-                            </tr>
+                          <tbody id="ticket-table-body">
+
                           </tbody>
                           <tfoot>
                           </tfoot>

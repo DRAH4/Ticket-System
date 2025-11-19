@@ -1,0 +1,23 @@
+.ticket-subject {
+  max-width: 175px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.filter-card-btn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+.filter-card-btn .card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.filter-card-btn:hover .card {
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}

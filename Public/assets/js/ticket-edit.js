@@ -1,9 +1,9 @@
 /**
- * App eCommerce Add Product Script
+ * Edit Ticket Script
  */
 'use strict';
 
-//Javascript to handle the e-commerce product add page
+//Javascript to handle the Edit Ticket page
 
 (function () {
   // Comment editor
