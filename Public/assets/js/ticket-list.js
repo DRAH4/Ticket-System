@@ -1,7 +1,7 @@
 // ticket-list.js
 'use strict';
 
-// Temporary ticket data (you will replace this with database data later)
+// Temporary ticket data (will be removed once the database is made)
 const tickets = [
   {
     id: 1,
