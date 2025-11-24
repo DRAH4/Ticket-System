@@ -280,7 +280,7 @@
                         </div>
                         <!-- Description -->
                         <div>
-                          <label class="mb-1">Description (Optional)</label>
+                          <label class="mb-1">Description</label>
                           <div class="form-control p-0">
                             <div class="comment-toolbar border-0 border-bottom">
                               <div class="d-flex justify-content-start">
@@ -305,7 +305,6 @@
                     <div class="card mb-6">
                       <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0 card-title">Image</h5>
-                        <a href="javascript:void(0);" class="fw-medium">Add media from URL</a>
                       </div>
                       <div class="card-body">
                         <form action="/upload" class="dropzone needsclick p-0" id="dropzone-basic">
@@ -335,7 +334,7 @@
                         <!-- Priority -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
                           <label class="form-label mb-1" for="priority"> Priority </label>
-                          <select id="priority" class="select2 form-select" data-placeholder="Select Priority">
+                          <select id="ticket-priority" class="select2 form-select" data-placeholder="Select Priority">
                             <option value="">Select Priority</option>
                             <option value="P1">P1</option>
                             <option value="Critical">Critical</option>
@@ -351,7 +350,7 @@
                             <label class="form-label mb-1" for="assignee">
                               <span>Assignee</span>
                             </label>
-                            <select id="assignee" class="select2 form-select" data-placeholder="Select Assignee">
+                            <select id="ticket-assignee" class="select2 form-select" data-placeholder="Select Assignee">
                               <option value="">Select Assignee</option>
                               <option value="Jon Snow">Jon Snow</option>
                               <option value="Booker DeWitt">Booker DeWitt</option>
@@ -363,8 +362,8 @@
                         <!-- Type -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
                           <label class="form-label mb-1" for="collection">Type </label>
-                          <select id="type" class="select2 form-select" data-placeholder="Type">
-                            <option value="">Type</option>
+                          <select id="ticket-type" class="select2 form-select" data-placeholder="Type">
+                            <option value="">Select Type</option>
                             <option value="Bug Fix">Bug Fix</option>
                             <option value="Testing">Testing</option>
                             <option value="Programming">Programming</option>
@@ -375,11 +374,10 @@
                         <!-- Status -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
                           <label class="form-label mb-1" for="status">Status </label>
-                          <select id="status" class="select2 form-select" data-placeholder="Status">
-                            <option value="">Status</option>
+                          <select id="ticket-status" class="select2 form-select" data-placeholder="Status">
+                            <option value="">Select Status</option>
                             <option value="Pending" class="text-capitalize">Pending</option>
                             <option value="Open" class="text-capitalize">Open</option>
-                            <option value="Closed" class="text-capitalize">Closed</option>
                             <option value="Unread" class="text-capitalize">Unread</option>
                             <option value="Waiting Response" class="text-capitalize">Waiting Response</option>
                           </select>
@@ -387,9 +385,9 @@
                         <!-- Owner -->
                         <div class="mb-6 col ecommerce-select2-dropdown">
                           <label class="form-label mb-1" for="owner">Owner </label>
-                          <select id="owner" class="select2 form-select" data-placeholder="Owner">
-                            <option value="">Owner</option>
-                            <option value="Pending" class="text-capitalize">John Doe</option>
+                          <select id="ticket-owner" class="select2 form-select" data-placeholder="Owner">
+                            <option value="">Select Owner</option>
+                            <option value="John Doe" class="text-capitalize">John Doe</option>
                           </select>
                         </div>
                       </div>

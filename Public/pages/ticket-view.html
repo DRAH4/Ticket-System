@@ -496,12 +496,12 @@
                       <div class="d-flex justify-content-between flex-column flex-md-row align-items-start align-items-md-center">
                         <div class="text-heading mb-md-0 mb-3">
                           <h5 class="fw-bold mb-2 text-primary">Ticket Details</h5>
-                          <p class="mb-1 text-muted">Ticket ID: <span class="fw-semibold">#1234</span></p>
-                          <p class="mb-0 text-muted">Created: <span class="fw-semibold">09/12/2025</span></p>
+                          <p class="mb-1 text-muted">Ticket ID: <span class="fw-semibold" id="view-id"></span></p>
+                          <p class="mb-0 text-muted">Created: <span class="fw-semibold" id="view-created"></span></p>
                           <h6 class="mb-1">Status: 
-                            <span class="badge bg-warning text-dark">In Progress</span>
+                            <span class="fw-semibold" id="view-status"></span>
                           </h6>
-                          <p class="mb-1 text-muted">Priority: <span class="fw-semibold text-danger">High</span></p>
+                          <p class="mb-1 text-muted">Priority: <span class="fw-semibold" id="view-priority"></span></p>
                         </div>
                       </div>
                     </div>
@@ -510,17 +510,15 @@
                       <div class="row">
                         <div class="col-xl-6 col-md-12 mb-4">
                           <h6 class="fw-semibold text-uppercase mb-2">General Info</h6>
-                          <p class="mb-1"><strong>Title:</strong> Website Bug</p>
-                          <p class="mb-1"><strong>Type:</strong> Bug Fix</p>
-                          <p class="mb-1"><strong>Ticket Owner:</strong> Smith</p>
-                          <p class="mb-1"><strong>Assigned To:</strong> Doe</p>
+                          <p class="mb-1"><strong>Title:</strong>  <span id="view-title"></span></p>
+                          <p class="mb-1"><strong>Type:</strong> <span id="view-type"></span></p>
+                          <p class="mb-1"><strong>Ticket Owner:</strong> <span id="view-owner"></span></p>
+                          <p class="mb-1"><strong>Assigned To:</strong> <span id="view-assignee"></span></p>
                         </div>
 
                         <div class="col-xl-6 col-md-12">
                           <h6 class="fw-semibold text-uppercase mb-2">Description</h6>
-                          <p class="text-muted mb-0">
-                            Users are unable to submit forms due to a JavaScript error on the contact page.
-                          </p>
+                          <p class="text-muted mb-0" id="view-description"></p>
                         </div>
                       </div>
                     </div>
@@ -534,6 +532,7 @@
                   <div class="card">
                     <div class="card-body">
                       <button
+                        id="edit-ticket"
                         class="btn btn-primary d-grid w-100 mb-4"
                         data-bs-target="#editTicket" onclick="window.location.href='/pages/ticket-edit.html'">
                         <span class="d-flex align-items-center justify-content-center text-nowrap"
@@ -541,6 +540,7 @@
                         >
                       </button>
                       <button
+                        id="delete-ticket"
                         class="btn btn-danger d-grid w-100 mb-4"
                         data-bs-target="#deleteTicket">
                         <span class="d-flex align-items-center justify-content-center text-nowrap"
@@ -551,8 +551,8 @@
                   </div>
                 </div>
                 <!-- /Ticket Actions -->
-
               </div>
+
               <!-- Comments Section -->
               <div class="card mt-3 shadow-sm border-0">
                 <div class="card-header bg-body-tertiary">
@@ -561,20 +561,7 @@
                 <div class="card-body">
 
                   <!-- Existing Comments -->
-                  <div class="mb-4">
-                    <div class="d-flex align-items-start mb-3">
-                      <div>
-                        <h6 class="mb-1 mt-2">John Doe <small class="text-muted">• Sep 9, 2025 at 3:15 PM</small></h6>
-                        <p class="mb-2">I checked the form submission error, looks like the issue is in the event listener. I’ll push a fix soon.</p>
-                      </div>
-                    </div>
-
-                    <div class="d-flex align-items-start mb-3">
-                      <div>
-                        <h6 class="mb-1">Sarah Smith <small class="text-muted">• Sep 10, 2025 at 10:22 AM</small></h6>
-                        <p class="mb-2">Thanks, John. I also noticed the issue happens only on mobile browsers.</p>
-                      </div>
-                    </div>
+                  <div id="comments-container" class="mb-4">
                   </div>
 
                   <hr class="my-4">

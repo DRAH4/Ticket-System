@@ -1,58 +1,38 @@
-// ticket-list.js
+/**
+ * Ticket List
+ */
+
 'use strict';
 
-// Temporary ticket data (will be removed once the database is made)
-const tickets = [
-  {
-    id: 1,
-    subject: 'Full Stack Project: Ticketing System',
-    createdAt: '09/12/2025',
-    priority: 'High',
-    assignee: 'Jon Snow',
-    type: 'Bug Fix',
-    status: 'Pending',
-    owner: 'John Doe'
-  },
-  {
-    id: 2,
-    subject: 'Help with new computer',
-    createdAt: '10/15/2025',
-    priority: 'P1',
-    assignee: 'Booker DeWitt',
-    type: 'IT Issue',
-    status: 'Open',
-    owner: 'Jane Smith'
-  },
-  {
-    id: 3,
-    subject: 'Help with new computer',
-    createdAt: '10/11/2025',
-    priority: 'Low',
-    assignee: 'Booker DeWitt',
-    type: 'IT Issue',
-    status: 'Open',
-    owner: 'Jane Smith'
-  },
-  {
-    id: 4,
-    subject: 'Help with new computer',
-    createdAt: '08/15/2025',
-    priority: 'Medium',
-    assignee: 'Booker DeWitt',
-    type: 'IT Issue',
-    status: 'Open',
-    owner: 'Jane Smith'
-  }
-];
+// Javascript to handle the Ticket List page
 
+// Temporary ticket data (will be removed once the database is made)
+let tickets = [];
+
+// Get tickets from localStorage if they exist
+const stored = localStorage.getItem('tickets');
+if (stored) {
+  tickets = JSON.parse(stored);
+} else {
+  // Store empty list so structure exists for later use
+  localStorage.setItem('tickets', JSON.stringify(tickets));
+}
+
+// Render tickets into the table body
 function renderTickets(list = tickets) {
   const tbody = document.getElementById('ticket-table-body');
   if (!tbody) return;
 
+  // Clear any existing rows
   tbody.innerHTML = '';
 
+  // Build a row for each ticket
   list.forEach(ticket => {
     const tr = document.createElement('tr');
+
+    // Attach ticket id to the row so it can be used for navigation
+    tr.setAttribute('data-ticket-id', ticket.id);
+    tr.classList.add('ticket-row');
 
     tr.innerHTML = `
       <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
@@ -102,23 +82,42 @@ function renderTickets(list = tickets) {
   });
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-
+  // Initial render of all tickets
   renderTickets(tickets);
 
+  const tbody = document.getElementById('ticket-table-body');
+  if (tbody) {
+    // Handle clicking on a ticket row to go to the view page
+    tbody.addEventListener('click', (e) => {
+      // Ignore clicks on interactive elements so dropdowns still work
+      const interactive = e.target.closest('select, button, a, input, label, textarea');
+      if (interactive) {
+        return;
+      }
+
+      // Find the closest row with a ticket id
+      const row = e.target.closest('tr[data-ticket-id]');
+      if (!row) return;
+
+      const ticketId = row.getAttribute('data-ticket-id');
+
+      // Navigate to the ticket view page with the id in the query string
+      window.location.href = `pages/ticket-view.html?id=${ticketId}`;
+    });
+  }
+
+  // Quick filter buttons
   const btnOldest = document.getElementById('filter-oldest');
   const btnHigh = document.getElementById('filter-high');
   const btnOpen = document.getElementById('filter-open');
-  // UNREAD IS NOT READY YET
-  //const btnUnread = document.getElementById('filter-unread');
 
+  // Dropdown filters
   const filterType = document.getElementById('ticket-type');
   const filterStatus = document.getElementById('ticket-status');
   const filterOwner = document.getElementById('ticket-owner');
   const filterPriority = document.getElementById('ticket-priority');
   const filterAssignee = document.getElementById('ticket-assignee');
-
 
   // Oldest Tickets: sort by createdAt ascending
   if (btnOldest) {
@@ -150,45 +149,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-// Function for all lower filters
-function applyFilters() {
-  const type = filterType ? filterType.value : '';
-  const status = filterStatus ? filterStatus.value : '';
-  const owner = filterOwner ? filterOwner.value : '';
-  const priority = filterPriority ? filterPriority.value : '';
-  const assignee = filterAssignee ? filterAssignee.value : '';
+  // Apply all lower dropdown filters together
+  function applyFilters() {
+    const type = filterType ? filterType.value : '';
+    const status = filterStatus ? filterStatus.value : '';
+    const owner = filterOwner ? filterOwner.value : '';
+    const priority = filterPriority ? filterPriority.value : '';
+    const assignee = filterAssignee ? filterAssignee.value : '';
 
-  const filtered = tickets.filter(ticket => {
-    if (type && ticket.type !== type) return false;
-    if (status && ticket.status !== status) return false;
-    if (owner && ticket.owner !== owner) return false;
-    if (priority && ticket.priority !== priority) return false;
-    if (assignee && ticket.assignee !== assignee) return false;
-    return true;
-  });
+    // Only keep tickets that match all active filter values
+    const filtered = tickets.filter(ticket => {
+      if (type && ticket.type !== type) return false;
+      if (status && ticket.status !== status) return false;
+      if (owner && ticket.owner !== owner) return false;
+      if (priority && ticket.priority !== priority) return false;
+      if (assignee && ticket.assignee !== assignee) return false;
+      return true;
+    });
 
-  renderTickets(filtered);
-}
+    renderTickets(filtered);
+  }
 
-if (filterType) {
-  filterType.addEventListener('change', applyFilters);
-}
+  // Attach change listeners to dropdown filters
+  if (filterType) {
+    filterType.addEventListener('change', applyFilters);
+  }
 
-if (filterStatus) {
-  filterStatus.addEventListener('change', applyFilters);
-}
+  if (filterStatus) {
+    filterStatus.addEventListener('change', applyFilters);
+  }
 
-if (filterOwner) {
-  filterOwner.addEventListener('change', applyFilters);
-}
+  if (filterOwner) {
+    filterOwner.addEventListener('change', applyFilters);
+  }
 
-if (filterPriority) {
-  filterPriority.addEventListener('change', applyFilters);
-}
+  if (filterPriority) {
+    filterPriority.addEventListener('change', applyFilters);
+  }
 
-if (filterAssignee) {
-  filterAssignee.addEventListener('change', applyFilters);
-}
-
-
+  if (filterAssignee) {
+    filterAssignee.addEventListener('change', applyFilters);
+  }
 });
