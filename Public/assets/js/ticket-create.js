@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // previewTemplate: Updated Dropzone default previewTemplate
 
-  // ! Don't change it unless you really know what you are doing
-
   const previewTemplate = `<div class="dz-preview dz-file-preview">
 <div class="dz-details">
   <div class="dz-thumbnail">
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get IDs for ticket information
   const createTicket = document.getElementById('create-ticket');
   const ticketSubject = document.getElementById('ticket-subject');
-  const ticketImage = document.getElementById('dropzone-basic');
+  //const ticketImage = document.getElementById('dropzone-basic');
   const ticketPriority = document.getElementById('ticket-priority');
   const ticketAssignee = document.getElementById('ticket-assignee');
   const ticketType = document.getElementById('ticket-type');
@@ -71,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const ticketOwner = document.getElementById('ticket-owner');
 
 
-  createTicket.addEventListener('click', () => {
+  if (!createTicket) return;
+
+  createTicket.addEventListener('click', async (e) => {
+    e.preventDefault();
 
     // Get Description from quill
     let ticketDescription = '';
@@ -95,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
      
     // Build ticket object
     const newTicket = {
-      id: Date.now(),
       subject: ticketSubject.value.trim(),
       description: ticketDescription,
       priority: ticketPriority.value,
@@ -103,24 +103,29 @@ document.addEventListener('DOMContentLoaded', () => {
       type: ticketType.value,
       status: ticketStatus.value,
       owner: ticketOwner.value,
-      createdAt: new Date().toLocaleDateString('en-US'),
-      comments: []
     };
 
-    console.log('New ticket:', newTicket);
+    try {
+      const res = await fetch('/api/tickets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTicket)
+      });
 
-    // Save to localStorage to show up on ticket list page
+      if (!res.ok) {
+        console.error('Failed response from server:', res.status, res.statusText);
+        alert('There was a problem saving the ticket');
+        return;
+      }
 
-    const stored = localStorage.getItem('tickets');
-    const tickets = stored ? JSON.parse(stored) : [];
-    tickets.push(newTicket);
-    localStorage.setItem('tickets', JSON.stringify(tickets));
-
-    // Go back to ticket list page
-    window.location.href = '../index.html';
-
-
+      // On success, go back to the ticket list
+      window.location.href = '../index.html';
+    } catch (err) {
+      console.error('Error creating ticket:', err);
+      alert('There was an error connecting to the server');
+    }
   });
-
 });
 

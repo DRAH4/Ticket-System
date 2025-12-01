@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // previewTemplate: Updated Dropzone default previewTemplate
 
-  // ! Don't change it unless you really know what you are doing
-
   const previewTemplate = `<div class="dz-preview dz-file-preview">
 <div class="dz-details">
   <div class="dz-thumbnail">
@@ -62,46 +60,66 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get IDs for ticket information
   const ticketNumber = document.getElementById('ticketNumber');
   const ticketSubject = document.getElementById('ticket-subject');
-  const ticketImage = document.getElementById('dropzone-basic');
+  //const ticketImage = document.getElementById('dropzone-basic');
   const ticketPriority = document.getElementById('ticket-priority');
   const ticketAssignee = document.getElementById('ticket-assignee');
   const ticketType = document.getElementById('ticket-type');
   const ticketStatus = document.getElementById('ticket-status');
   const ticketOwner = document.getElementById('ticket-owner');
   const saveButton = document.getElementById('save-ticket');
+  const cancelBtn = document.getElementById('cancel-ticket');
 
   if (!saveButton) return;
 
-
+  // Get ticket id from query string
   const params = new URLSearchParams(window.location.search);
   const idParam = params.get('id');
   if (!idParam) return;
   const ticketId = Number(idParam);
 
-  const stored = localStorage.getItem('tickets');
-  if (!stored) return;
+  let currentTicket = null;
 
-  let tickets = JSON.parse(stored);
-  let ticket = tickets.find(t => t.id === ticketId);
-  if (!ticket) return;
+  // Load ticket from backend and prefill the form
+  async function loadTicket() {
+    try {
+      const res = await fetch(`/api/tickets/${ticketId}`);
+      if (!res.ok) {
+        console.error('Failed to load ticket', res.status, res.statusText);
+        return;
+      }
+
+      const ticket = await res.json();
+      currentTicket = ticket;
   
-  if (ticketNumber) ticketNumber.textContent = `Ticket #${ticket.id}`;
-  if (ticketSubject) ticketSubject.value = ticket.subject || '';
-  if (ticketImage) ticketImage.value = ticket.image || '';
-  if (ticketPriority) ticketPriority.value = ticket.priority || '';
-  if (ticketAssignee) ticketAssignee.value = ticket.assignee || '';
-  if (ticketType) ticketType.value = ticket.type || '';
-  if (ticketStatus) ticketStatus.value = ticket.status || '';
-  if (ticketOwner) ticketOwner.value = ticket.owner || '';
+      if (ticketNumber) ticketNumber.textContent = `Ticket #${ticket.id}`;
+      if (ticketSubject) ticketSubject.value = ticket.subject || '';
+      //if (ticketImage) ticketImage.value = ticket.image || '';
+      if (ticketPriority) ticketPriority.value = ticket.priority || '';
+      if (ticketAssignee) ticketAssignee.value = ticket.assignee || '';
+      if (ticketType) ticketType.value = ticket.type || '';
+      if (ticketStatus) ticketStatus.value = ticket.status || '';
+      if (ticketOwner) ticketOwner.value = ticket.owner || '';
 
-  if (quill) {
-    quill.setText(ticket.description || '');
+      if (quill) {
+        quill.setText(ticket.description || '');
+      }
+    } catch (err) {
+      console.error('Error loading ticket:', err);
+    }
   }
 
-  saveButton.addEventListener('click', () => {
-  // Basic validation
-  let descriptionText = quill ? quill.getText().trim() : '';
+  loadTicket();
 
+  // Save button handler
+  saveButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    if (!currentTicket) return;
+
+  // Defining and cleaning ticket description
+  const descriptionText = quill ? quill.getText().trim() : '';
+
+  // Basic validation
   if (
     !ticketSubject.value.trim() ||
     !descriptionText ||
@@ -115,32 +133,47 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-    ticket.subject = ticketSubject.value.trim();
-    ticket.priority = ticketPriority.value;
-    ticket.assignee = ticketAssignee.value;
-    ticket.type = ticketType.value;
-    ticket.status = ticketStatus.value;
-    ticket.owner = ticketOwner.value.trim();
-    ticket.description = descriptionText;
+     // Build updated ticket
+    const updatedTicket = {
+      subject: ticketSubject.value.trim(),
+      description: descriptionText,
+      priority: ticketPriority.value,
+      assignee: ticketAssignee.value,
+      type: ticketType.value,
+      status: ticketStatus.value,
+      owner: ticketOwner.value.trim()
+    };
 
-    // put updated ticket back in array
-    tickets = tickets.map(t => (t.id === ticketId ? ticket : t));
+    try {
+      const res = await fetch(`/api/tickets/${ticketId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedTicket)
+      });
 
-    // save back to localStorage
-    localStorage.setItem('tickets', JSON.stringify(tickets));
+      if (!res.ok) {
+        console.error('Failed to update ticket', res.status, res.statusText);
+        alert('There was a problem updating the ticket.');
+        return;
+      }
 
-    // redirect back to view after saving
-    window.location.href = `ticket-view.html?id=${ticketId}`;
+      // Go back to view page
+      window.location.href = `ticket-view.html?id=${ticketId}`;
+    } catch (err) {
+      console.error('Error updating ticket:', err);
+      alert('There was an error connecting to the server.');
+    }
   });
 
-
-  // redirect back to view after canceling
-  const cancelBtn = document.getElementById('cancel-ticket');
-  if (!cancelBtn) return;
-
-  cancelBtn.addEventListener('click', () => {
-    window.location.href = `ticket-view.html?id=${ticketId}`;
-  });
+  // Cancel button just goes back to view
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = `ticket-view.html?id=${ticketId}`;
+    });
+  }
 
 
 });

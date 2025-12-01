@@ -6,17 +6,8 @@
 
 // Javascript to handle the Ticket List page
 
-// Temporary ticket data (will be removed once the database is made)
+// Ticket array 
 let tickets = [];
-
-// Get tickets from localStorage if they exist
-const stored = localStorage.getItem('tickets');
-if (stored) {
-  tickets = JSON.parse(stored);
-} else {
-  // Store empty list so structure exists for later use
-  localStorage.setItem('tickets', JSON.stringify(tickets));
-}
 
 // Render tickets into the table body
 function renderTickets(list = tickets) {
@@ -34,11 +25,17 @@ function renderTickets(list = tickets) {
     tr.setAttribute('data-ticket-id', ticket.id);
     tr.classList.add('ticket-row');
 
+    // Format created date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat("en-US").format(date);
+    }
+
     tr.innerHTML = `
       <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
       <td><span>#${ticket.id}</span></td>
       <td><span class="ticket-subject">${ticket.subject}</span></td>
-      <td><span>${ticket.createdAt}</span></td>
+      <td><span>${formatDate(ticket.createdAt)}</span></td>
       <td>
         <select class="form-select btn-primary btn">
           <option value="P1" ${ticket.priority === 'P1' ? 'selected' : ''}>P1</option>
@@ -82,9 +79,24 @@ function renderTickets(list = tickets) {
   });
 }
 
+// Load tickets from the backend API
+async function loadTickets() {
+  try {
+    const res = await fetch("/api/tickets");
+    if (!res.ok) {
+      console.error("Failed to load tickets:", res.status);
+      return;
+    }
+    tickets = await res.json();
+    renderTickets(tickets);
+  } catch (err) {
+    console.error("Error loading tickets:", err);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Initial render of all tickets
-  renderTickets(tickets);
+  // Initial load from the API
+  loadTickets();
 
   const tbody = document.getElementById('ticket-table-body');
   if (tbody) {
