@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-     // Build updated ticket
+    // Build updated ticket
     const updatedTicket = {
       subject: ticketSubject.value.trim(),
       description: descriptionText,

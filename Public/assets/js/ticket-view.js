@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!text) return;
 
       const newComment = {
-        author: 'John Doe', // later you can make this dynamic
+        author: 'John Doe',
         text
       };
 
