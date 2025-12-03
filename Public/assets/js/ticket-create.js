@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Get IDs for ticket information
+  const ticketNumber = document.getElementById('ticketNumber');
   const createTicket = document.getElementById('create-ticket');
   const ticketSubject = document.getElementById('ticket-subject');
   //const ticketImage = document.getElementById('dropzone-basic');

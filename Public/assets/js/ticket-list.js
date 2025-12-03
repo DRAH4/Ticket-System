@@ -31,6 +31,7 @@ function renderTickets(list = tickets) {
       return new Intl.DateTimeFormat("en-US").format(date);
     }
 
+    // Generate HTML
     tr.innerHTML = `
       <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
       <td><span>#${ticket.id}</span></td>
