@@ -113,6 +113,7 @@ This version of the project is viewed locally.
 
 4. Create a .env file in the project root
 
+   ```
    DB_HOST=localhost
    DB_USER=root
    DB_PASSWORD=your_mysql_password
@@ -120,8 +121,9 @@ This version of the project is viewed locally.
    DB_PORT=3306
     
    PORT=3000
+   ```
 
-5. Create a .env file in the project root
+6. Create a .env file in the project root
    
    node server.js
 
