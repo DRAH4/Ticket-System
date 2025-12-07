@@ -38,7 +38,7 @@ function renderTickets(list = tickets) {
       <td><span class="ticket-subject">${ticket.subject}</span></td>
       <td><span>${formatDate(ticket.createdAt)}</span></td>
       <td>
-        <select class="form-select btn-primary btn">
+        <select class="form-select btn-primary btn" data-field="priority">
           <option value="P1" ${ticket.priority === 'P1' ? 'selected' : ''}>P1</option>
           <option value="Critical" ${ticket.priority === 'Critical' ? 'selected' : ''}>Critical</option>
           <option value="High" ${ticket.priority === 'High' ? 'selected' : ''}>High</option>
@@ -48,7 +48,7 @@ function renderTickets(list = tickets) {
         </select>
       </td>
       <td>
-        <select class="form-select btn-primary btn">
+        <select class="form-select btn-primary btn" data-field="assignee">
           <option value="Jon Snow" ${ticket.assignee === 'Jon Snow' ? 'selected' : ''}>Jon Snow</option>
           <option value="Booker DeWitt" ${ticket.assignee === 'Booker DeWitt' ? 'selected' : ''}>Booker DeWitt</option>
           <option value="Aiden Pearce" ${ticket.assignee === 'Aiden Pearce' ? 'selected' : ''}>Aiden Pearce</option>
@@ -56,7 +56,7 @@ function renderTickets(list = tickets) {
         </select>
       </td>
       <td>
-        <select class="form-select btn-primary btn">
+        <select class="form-select btn-primary btn" data-field="type">
           <option value="Bug Fix" ${ticket.type === 'Bug Fix' ? 'selected' : ''}>Bug Fix</option>
           <option value="Testing" ${ticket.type === 'Testing' ? 'selected' : ''}>Testing</option>
           <option value="Programming" ${ticket.type === 'Programming' ? 'selected' : ''}>Programming</option>
@@ -65,7 +65,7 @@ function renderTickets(list = tickets) {
         </select>
       </td>
       <td>
-        <select class="form-select btn-primary btn">
+        <select class="form-select btn-primary btn" data-field="status">
           <option value="Pending" ${ticket.status === 'Pending' ? 'selected' : ''}>Pending</option>
           <option value="Open" ${ticket.status === 'Open' ? 'selected' : ''}>Open</option>
           <option value="Closed" ${ticket.status === 'Closed' ? 'selected' : ''}>Closed</option>
@@ -117,6 +117,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Navigate to the ticket view page with the id in the query string
       window.location.href = `pages/ticket-view.html?id=${ticketId}`;
+    });
+
+    // Handle dropdown changes (priority, status, type, assignee)
+    tbody.addEventListener('change', async (e) => {
+      // Get the element that actually changed
+      const select = e.target;
+
+      // Only react to <select> element inside rows
+      if (!select || select.tagName !== "SELECT") return;
+
+      // Find the row that this select belongs to
+      const row = select.closest("tr[data-ticket-id");
+      if (!row) return;
+
+      const ticketId = row.getAttribute("data-ticket-id");
+
+      // Determine which field was changed
+      const field = select.getAttribute("data-field");
+      const newValue = select.value;
+
+      if (!field) {
+        console.error("Missing data-field attribute on select.");
+        return;
+      }
+
+      // Update the local tickets array so UI stays in sync
+      const ticket = tickets.find(t => t.id == ticketId);
+      if (ticket) {
+        ticket[field] = newValue;
+      }
+
+      // Send update to the backend
+      try {
+        const res = await fetch(`/api/tickets/${ticketId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ [field]: newValue })
+        });
+        
+        if (!res.ok) {
+          console.error("Server failed to update ticket:", await res.ticket());
+        }
+      } catch (err) {
+        console.error("Update request failed:", err);
+      }
     });
   }
 

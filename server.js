@@ -106,22 +106,28 @@ app.post("/api/tickets", async (req, res) => {
 });
 
 // Update a ticket
+// Update one field on a ticket
 app.put("/api/tickets/:id", async (req, res) => {
   try {
-    const { subject, description, priority, assignee, type, status, owner } = req.body;
+    const ticketId = req.params.id;
+    const updates = req.body;
 
-    if (!subject || !priority || !assignee || !type || !status || !owner) {
-      return res.status(400).json({ error: "Missing required fields" });
+    // Only allow updating known fields
+    const allowed = ["subject", "description", "priority", "assignee", "type", "status", "owner"];
+    const fields = Object.keys(updates).filter(f => allowed.includes(f));
+
+    if (fields.length === 0) {
+      return res.status(400).json({ error: "No valid fields provided" });
     }
 
-    await pool.query(
-      `UPDATE tickets
-       SET subject = ?, description = ?, priority = ?, assignee = ?, type = ?, status = ?, owner = ?
-       WHERE id = ?`,
-      [subject, description || "", priority, assignee, type, status, owner, req.params.id]
-    );
+    // Build SQL dynamically
+    const setClause = fields.map(f => `${f} = ?`).join(", ");
+    const values = fields.map(f => updates[f]);
+    values.push(ticketId);
 
-    res.json({ message: "Ticket updated" });
+    await pool.query(`UPDATE tickets SET ${setClause} WHERE id = ?`, values);
+
+    res.json({ success: true });
   } catch (err) {
     console.error("Error updating ticket:", err);
     res.status(500).json({ error: "Failed to update ticket" });
