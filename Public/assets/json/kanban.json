@@ -1,0 +1,17 @@
+[
+  {
+    "id": "board-todo",
+    "title": "To Do",
+    "item": []
+  },
+  {
+    "id": "board-in-progress",
+    "title": "In Progress",
+    "item": []
+  },
+  {
+    "id": "board-done",
+    "title": "Done",
+    "item": []
+  }
+]

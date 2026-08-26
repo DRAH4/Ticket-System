@@ -13,7 +13,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   const direction = isRtl ? 'rtl' : 'ltr';
-  (function () {
+  (async function () {
     // DOM Elements
     const calendarEl = document.getElementById('calendar');
     const appCalendarSidebar = document.querySelector('.app-calendar-sidebar');
@@ -48,8 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const eventLabel = $('#eventLabel'); // ! Using jQuery vars due to select2 jQuery dependency
     const eventGuests = $('#eventGuests'); // ! Using jQuery vars due to select2 jQuery dependency
 
-    // Event Data
-    let currentEvents = events; // Assuming events are imported from app-calendar-events.js
+    // Event Data — loaded from API
+    let currentEvents = [];
+    try {
+      const res = await fetch('/api/events');
+      currentEvents = await res.json();
+    } catch (err) {
+      console.error('Failed to load events:', err);
+    }
     let isFormValid = false;
     let eventToUpdate = null;
     let inlineCalInstance = null;
@@ -343,46 +349,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Add Event
     // ------------------------------------------------
-    function addEvent(eventData) {
-      // ? Add new event data to current events object and refetch it to display on calender
-      // ? You can write below code to AJAX call success response
-
-      currentEvents.push(eventData);
-      calendar.refetchEvents();
-
-      // ? To add event directly to calender (won't update currentEvents object)
-      // calendar.addEvent(eventData);
+    async function addEvent(eventData) {
+      try {
+        const res = await fetch('/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eventData)
+        });
+        const created = await res.json();
+        currentEvents.push(created);
+        calendar.refetchEvents();
+      } catch (err) {
+        console.error('Failed to save event:', err);
+      }
     }
 
     // Update Event
     // ------------------------------------------------
-    function updateEvent(eventData) {
-      // ? Update existing event data to current events object and refetch it to display on calender
-      // ? You can write below code to AJAX call success response
-      eventData.id = parseInt(eventData.id);
-      currentEvents[currentEvents.findIndex(el => el.id === eventData.id)] = eventData; // Update event by id
-      calendar.refetchEvents();
-
-      // ? To update event directly to calender (won't update currentEvents object)
-      // let propsToUpdate = ['id', 'title', 'url'];
-      // let extendedPropsToUpdate = ['calendar', 'guests', 'location', 'description'];
-
-      // updateEventInCalendar(eventData, propsToUpdate, extendedPropsToUpdate);
+    async function updateEvent(eventData) {
+      try {
+        await fetch(`/api/events/${eventData.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eventData)
+        });
+        eventData.id = parseInt(eventData.id);
+        currentEvents[currentEvents.findIndex(el => el.id === eventData.id)] = eventData;
+        calendar.refetchEvents();
+      } catch (err) {
+        console.error('Failed to update event:', err);
+      }
     }
 
     // Remove Event
     // ------------------------------------------------
-
-    function removeEvent(eventId) {
-      // ? Delete existing event data to current events object and refetch it to display on calender
-      // ? You can write below code to AJAX call success response
-      currentEvents = currentEvents.filter(function (event) {
-        return event.id != eventId;
-      });
-      calendar.refetchEvents();
-
-      // ? To delete event directly to calender (won't update currentEvents object)
-      // removeEventInCalendar(eventId);
+    async function removeEvent(eventId) {
+      try {
+        await fetch(`/api/events/${eventId}`, { method: 'DELETE' });
+        currentEvents = currentEvents.filter(event => event.id != eventId);
+        calendar.refetchEvents();
+      } catch (err) {
+        console.error('Failed to delete event:', err);
+      }
     }
 
     // (Update Event In Calendar (UI Only)
